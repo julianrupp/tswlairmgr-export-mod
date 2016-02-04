@@ -5,7 +5,7 @@ import com.GameInterface.DistributedValue;
 import com.Utils.Archive;
 import com.Utils.LDBFormat;
 
-var version = "1.0.0";
+var version = "1.0.1";
 
 var m_VisibleValue:DistributedValue;
 var m_TSWLMExportWindow:TSWLMExportWindow;
@@ -14,7 +14,7 @@ var m_TSWLMExportVersion = com.GameInterface.DistributedValue.Create("tswlmexpor
 var m_IconPosition;
 var m_Icon;
 var m_VTIOIsLoadedMonitor;
-var VTIOAddonInfo = "TSW Lair Manager Export|Cobin|" + version + "|tswlmexport|_root.tswlmexport\\tswlmexport.m_Icon";
+var VTIOAddonInfo = "TSW Lair Manager Export|Cobin|" + version + "|tswlmexport_window|_root.tswlmexport\\tswlmexport.m_Icon";
 
 function onLoad()
 {

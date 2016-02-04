@@ -44,6 +44,9 @@ Changelog
 
 #### Version 1.0
 
+##### 1.0.1
+- Fixed minor VTIO integration bug.
+
 ##### 1.0.0
 - The initial version. It's done, yay!
 - Supports all 8 classic lairs.
