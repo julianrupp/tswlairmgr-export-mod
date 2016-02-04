@@ -7,6 +7,7 @@ import com.GameInterface.Inventory;
 import com.GameInterface.Game.CharacterBase;
 import com.GameInterface.Utils;
 import com.Components.WindowComponentContent;
+import com.Utils.LDBFormat;
 import mx.utils.Delegate;
 import flash.display.*;
 import flash.text.*;
@@ -17,6 +18,7 @@ class TSWLMExportWindow extends WindowComponentContent
 {
 	private var m_StatsLabel:TextField;
 	private var m_ExportStringField:TextArea;
+	private var m_HelpLabel:TextField;
 	
 	private var m_Width:Number;
 	private var m_Height:Number;
@@ -26,6 +28,7 @@ class TSWLMExportWindow extends WindowComponentContent
 	private var m_isBankOpen:Boolean = false;
 	private var m_bankInventory:Inventory;
 	private var m_inventoryScanner:InventoryScanner;
+	private var m_currentExportString:String;
 
 	public var SignalClose:Signal;
 
@@ -83,13 +86,54 @@ class TSWLMExportWindow extends WindowComponentContent
 	{
 		var stats = this.m_inventoryScanner.getStats();
 		
-		var text = "";
-		text += "Exporting fragment counts " + ((m_isBankOpen) ? "from your inventory and personal bank" : "from your inventory only") + ".\n";
-		text += "Found " + stats.totalLairFragmentCount + " fragment" + ((stats.totalLairFragmentCount==1) ? "" : "s") + " (" + stats.distinctLairFragmentCount + " distinct) from " + stats.distinctRegionCount + " region" + ((stats.distinctRegionCount==1) ? "" : "s") + ", " + stats.distinctZoneCount + " zone" + ((stats.distinctZoneCount==1) ? "" : "s") + ", " + stats.distinctBossCount + " boss" + ((stats.distinctBossCount==1) ? "" : "es") + ".\n";
+		var statsLabelText = "";
+		var helpLabelText = "";
+		switch(com.Utils.LDBFormat.GetCurrentLanguageCode())
+		{
+			default:
+			case "en":
+				/*
+				Exporting fragment counts from your inventory and personal bank.
+				Found #### fragments (#### distinct) from #### regions, #### zones, #### bosses.
+				*/
+				statsLabelText += "Exporting fragment counts " + ((m_isBankOpen) ? "from your inventory and personal bank" : "from your inventory only") + ".\n";
+				statsLabelText += "Found " + stats.totalLairFragmentCount + " fragment" + ((stats.totalLairFragmentCount==1) ? "" : "s") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " distinct)" : "" ) + " from " + stats.distinctRegionCount + " region" + ((stats.distinctRegionCount==1) ? "" : "s") + ", " + stats.distinctZoneCount + " zone" + ((stats.distinctZoneCount==1) ? "" : "s") + ", " + stats.distinctBossCount + " boss" + ((stats.distinctBossCount==1) ? "" : "es") + ".\n";
+				/*
+				Copy the code in the text field above (click, Ctrl-A, Ctrl-C) and paste it into the TSW Lair Manager web app.
+				*/
+				helpLabelText += "Copy the code in the text field above (click, Ctrl-A, Ctrl-C) and paste it into the TSW Lair Manager web app.";
+			break;
+			case "de":
+			/*
+			Exportiere Fragmente aus deinem Inventar und deiner persönlichen Bank.
+			#### Fragmente (#### verschiedene) aus #### Regionen, #### Zonen, #### Bossen gefunden.
+			*/
+				statsLabelText += "Exportiere Fragmente " + ((m_isBankOpen) ? "aus deinem Inventar und deiner persönlichen Bank" : "nur aus deinem Invantar") + ".\n";
+				statsLabelText += "" + stats.totalLairFragmentCount + " Fragment" + ((stats.totalLairFragmentCount==1) ? "" : "e") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " verschiedene)" : "") + " aus " + stats.distinctRegionCount + " Region" + ((stats.distinctRegionCount==1) ? "" : "en") + ", " + stats.distinctZoneCount + " Zone" + ((stats.distinctZoneCount==1) ? "" : "n") + ", " + stats.distinctBossCount + " Boss" + ((stats.distinctBossCount==1) ? "" : "en") + " gefunden.\n";
+				/*
+				Kopiere den Code aus dem Textfeld oben (Klick, Strg-A, Strg-C) und füge ihn im TSW Lair Manager Web-App ein.
+				*/
+				helpLabelText += "Kopiere den Code aus dem Textfeld oben (Klick, Strg-A, Strg-C) und füge ihn im TSW Lair Manager Web-App ein.";
+			break;
+			case "fr":
+			/*
+			Exporte les fragments de votre inventaire et banque personelle.
+			Trouvé #### fragments (#### distincts) de #### régions, #### zones, #### boss.
+			*/
+				statsLabelText += "Exporte les fragments " + ((m_isBankOpen) ? "de votre inventaire et banque personelle" : "juste de votre inventaire") + ".\n";
+				statsLabelText += "Trouvé " + stats.totalLairFragmentCount + " fragment" + ((stats.totalLairFragmentCount==1) ? "" : "s") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " distincts)" : "") + " de " + stats.distinctRegionCount + " région" + ((stats.distinctRegionCount==1) ? "" : "s") + ", " + stats.distinctZoneCount + " zone" + ((stats.distinctZoneCount==1) ? "" : "s") + ", " + stats.distinctBossCount + " boss" + ((stats.distinctBossCount==1) ? "" : "") + ".\n";
+				/*
+				Collez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) et collez celui dans l'appli web TSW Lair Manager.
+				*/
+				helpLabelText += "Collez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) et collez celui dans l'appli web TSW Lair Manager.";
+			break;
+		}
 		
-		this.m_StatsLabel.text = text;
+		this.m_StatsLabel.text = statsLabelText;
+		this.m_HelpLabel.text = helpLabelText;
 		
-		this.m_ExportStringField.text = this.m_inventoryScanner.exportString();
+		this.m_currentExportString = this.m_inventoryScanner.exportString();
+		this.m_ExportStringField.text = this.m_currentExportString;
 	}
 	
 	public function SetSize(width:Number, height:Number)

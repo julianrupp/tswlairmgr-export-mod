@@ -44,12 +44,23 @@ Changelog
 
 #### Version 1.0
 
+##### 1.0.2
+-	Now also available in German and French! (Please contact me if you spot any mistakes in the french translation)
+
 ##### 1.0.1
-- Fixed minor VTIO integration bug.
+-	Fixed minor VTIO integration bug.
 
 ##### 1.0.0
-- The initial version. It's done, yay!
-- Supports all 8 classic lairs.
+-	The initial version. It's done, yay!
+-	Supports all 8 classic lairs.
+
+
+Known issues
+------------
+
+Once you've clicked the text field to copy the code from it, it keeps hogging the input cursor focus, even when you close the window. It seems focus jumps back to the text field as soon as you press Shift, Ctrl or Alt. If you're an experienced TSW mod developer, please have a look and tell me how to fix this :)
+
+Temporary workaround: Reload your UI (since you can't type "/" in the chat window at this point, use Ctrl+Shift+F1).
 
 
 Donations
