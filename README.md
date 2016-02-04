@@ -58,9 +58,9 @@ Changelog
 Known issues
 ------------
 
-Once you've clicked the text field to copy the code from it, it keeps hogging the input cursor focus, even when you close the window. It seems focus jumps back to the text field as soon as you press Shift, Ctrl or Alt. If you're an experienced TSW mod developer, please have a look and tell me how to fix this :)
+Once you've clicked the text field to copy the code from it, it keeps hogging the input cursor focus, even when you close the window. (Try entering a chat command in the chat box directly after closing the window!). Focus jumps back to the text box as soon as you press Shift, Ctrl or Alt. This bug also seems to appear with other mods.
 
-Temporary workaround: Reload your UI (since you can't type "/" in the chat window at this point, use Ctrl+Shift+F1).
+Workaround: Do some kind of drag & drop operation (e.g. an item in your inventory) or click some button. Alternatively reload your UI (Ctrl+Shift+F1).
 
 
 Donations
