@@ -44,6 +44,9 @@ Changelog
 
 #### Version 1.0
 
+##### 1.0.4
+-	Fixed french translation. Thanks to [Rexxars](http://chronicle.thesecretworld.com/character/Rexxars) for sanity checking!
+
 ##### 1.0.3
 -	Fixed typo in german localization.
 
