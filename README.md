@@ -44,6 +44,9 @@ Changelog
 
 #### Version 1.0
 
+##### 1.0.3
+-	Fixed typo in german localization.
+
 ##### 1.0.2
 -	Now also available in German and French! (Please contact me if you spot any mistakes in the french translation)
 

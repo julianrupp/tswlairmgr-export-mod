@@ -108,7 +108,7 @@ class TSWLMExportWindow extends WindowComponentContent
 			Exportiere Fragmente aus deinem Inventar und deiner persönlichen Bank.
 			#### Fragmente (#### verschiedene) aus #### Regionen, #### Zonen, #### Bossen gefunden.
 			*/
-				statsLabelText += "Exportiere Fragmente " + ((m_isBankOpen) ? "aus deinem Inventar und deiner persönlichen Bank" : "nur aus deinem Invantar") + ".\n";
+				statsLabelText += "Exportiere Fragmente " + ((m_isBankOpen) ? "aus deinem Inventar und deiner persönlichen Bank" : "nur aus deinem Inventar") + ".\n";
 				statsLabelText += "" + stats.totalLairFragmentCount + " Fragment" + ((stats.totalLairFragmentCount==1) ? "" : "e") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " verschiedene)" : "") + " aus " + stats.distinctRegionCount + " Region" + ((stats.distinctRegionCount==1) ? "" : "en") + ", " + stats.distinctZoneCount + " Zone" + ((stats.distinctZoneCount==1) ? "" : "n") + ", " + stats.distinctBossCount + " Boss" + ((stats.distinctBossCount==1) ? "" : "en") + " gefunden.\n";
 				/*
 				Kopiere den Code aus dem Textfeld oben (Klick, Strg-A, Strg-C) und füge ihn im TSW Lair Manager Web-App ein.
