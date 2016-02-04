@@ -5,7 +5,7 @@ import com.GameInterface.DistributedValue;
 import com.Utils.Archive;
 import com.Utils.LDBFormat;
 
-var version = "1.0.3";
+var version = "1.0.4";
 
 var m_VisibleValue:DistributedValue;
 var m_TSWLMExportWindow:TSWLMExportWindow;

@@ -104,10 +104,10 @@ class TSWLMExportWindow extends WindowComponentContent
 				helpLabelText += "Copy the code in the text field above (click, Ctrl-A, Ctrl-C) and paste it into the TSW Lair Manager web app.";
 			break;
 			case "de":
-			/*
-			Exportiere Fragmente aus deinem Inventar und deiner persönlichen Bank.
-			#### Fragmente (#### verschiedene) aus #### Regionen, #### Zonen, #### Bossen gefunden.
-			*/
+				/*
+				Exportiere Fragmente aus deinem Inventar und deiner persönlichen Bank.
+				#### Fragmente (#### verschiedene) aus #### Regionen, #### Zonen, #### Bossen gefunden.
+				*/
 				statsLabelText += "Exportiere Fragmente " + ((m_isBankOpen) ? "aus deinem Inventar und deiner persönlichen Bank" : "nur aus deinem Inventar") + ".\n";
 				statsLabelText += "" + stats.totalLairFragmentCount + " Fragment" + ((stats.totalLairFragmentCount==1) ? "" : "e") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " verschiedene)" : "") + " aus " + stats.distinctRegionCount + " Region" + ((stats.distinctRegionCount==1) ? "" : "en") + ", " + stats.distinctZoneCount + " Zone" + ((stats.distinctZoneCount==1) ? "" : "n") + ", " + stats.distinctBossCount + " Boss" + ((stats.distinctBossCount==1) ? "" : "en") + " gefunden.\n";
 				/*
@@ -116,16 +116,16 @@ class TSWLMExportWindow extends WindowComponentContent
 				helpLabelText += "Kopiere den Code aus dem Textfeld oben (Klick, Strg-A, Strg-C) und füge ihn im TSW Lair Manager Web-App ein.";
 			break;
 			case "fr":
-			/*
-			Exporte les fragments de votre inventaire et banque personelle.
-			Trouvé #### fragments (#### distincts) de #### régions, #### zones, #### boss.
-			*/
-				statsLabelText += "Exporte les fragments " + ((m_isBankOpen) ? "de votre inventaire et banque personelle" : "juste de votre inventaire") + ".\n";
+				/*
+				Exporte les fragments de votre inventaire et banque personnelle.
+				Trouvé #### fragments (#### distincts) de #### régions, #### zones, #### boss.
+				*/
+				statsLabelText += "Exporte les fragments " + ((m_isBankOpen) ? "de votre inventaire et banque personnelle" : "juste de votre inventaire") + ".\n";
 				statsLabelText += "Trouvé " + stats.totalLairFragmentCount + " fragment" + ((stats.totalLairFragmentCount==1) ? "" : "s") + ((stats.distinctLairFragmentCount > 1) ? " (" + stats.distinctLairFragmentCount + " distincts)" : "") + " de " + stats.distinctRegionCount + " région" + ((stats.distinctRegionCount==1) ? "" : "s") + ", " + stats.distinctZoneCount + " zone" + ((stats.distinctZoneCount==1) ? "" : "s") + ", " + stats.distinctBossCount + " boss" + ((stats.distinctBossCount==1) ? "" : "") + ".\n";
 				/*
-				Collez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) et collez celui dans l'appli web TSW Lair Manager.
+				Copiez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) puis collez-le dans l'appli web TSW Lair Manager.
 				*/
-				helpLabelText += "Collez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) et collez celui dans l'appli web TSW Lair Manager.";
+				helpLabelText += "Copiez le code du champ de texte ci-dessus (cliquez, Ctrl-A, Ctrl-C) puis collez-le dans l'appli web TSW Lair Manager.";
 			break;
 		}
 		
