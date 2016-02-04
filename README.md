@@ -60,7 +60,7 @@ Known issues
 
 Once you've clicked the text field to copy the code from it, it keeps hogging the input cursor focus, even when you close the window. (Try entering a chat command in the chat box directly after closing the window!). Focus jumps back to the text box as soon as you press Shift, Ctrl or Alt. This bug also seems to appear with other mods.
 
-Workaround: Do some kind of drag & drop operation (e.g. an item in your inventory) or click some button. Alternatively reload your UI (Ctrl+Shift+F1).
+Workaround: Open your character sheet, go to Gear Manager, and select (single click) one build from the list. Alternatively reload your UI (Ctrl+Shift+F1).
 
 
 Donations
