@@ -42,6 +42,11 @@ I'm happy that it's somehow working, even if it looks bad.
 Changelog
 ---------
 
+#### Version 1.1
+
+##### 1.1.0
+-	Added support for exporting regional fragments. This will be used in a feature of the upcoming TSW Lair Manager v2.2.0. Please note that this update will break support with TSW Lair Manager v2.1.x and earlier versions. (TSW Lair Manager Export v1.0.x is the last version to support TSW Lair Manager v2.1.x and earlier)
+
 #### Version 1.0
 
 ##### 1.0.4

@@ -630,7 +630,7 @@ class net.nex4k.data.LairData
 			// Loop all Regional Fragment Set
 			var region = regions[rIdx];
 			var regionalBoss = region.getRegionalBoss();
-			var fragmentSet = regionalBoss.getFragments;
+			var fragmentSet = regionalBoss.getFragmentSet();
 			for(var oIdx=0; oIdx<RegionalBossFragmentSetOrientation.m_orientations.length; oIdx++)
 			{
 				var orientation = RegionalBossFragmentSetOrientation.m_orientations[oIdx];
@@ -639,7 +639,7 @@ class net.nex4k.data.LairData
 				{
 					var compound = {
 						region: region,
-						regionalBoss: regionalBoss,
+						boss: regionalBoss,
 						orientation: orientation
 					};
 				
