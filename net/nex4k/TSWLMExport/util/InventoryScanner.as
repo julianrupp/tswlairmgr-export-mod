@@ -15,6 +15,7 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 	private var m_stats:Object;
 	private var m_stats_calculated:Boolean = false;
 	private var m_lairFragments:Object;
+	private var m_regionalFragments:Object;
 	
 	public var SignalChanged:Signal;
 	
@@ -51,6 +52,7 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 		this.m_stats_calculated = false;
 		
 		this.m_lairFragments = {};
+		this.m_regionalFragments = {};
 		for(var invIdx=0; invIdx<this.m_inventories.length; invIdx++)
 		{
 			var inventory = this.m_inventories[invIdx];
@@ -88,6 +90,27 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 							this.m_lairFragments[fragment.region.getCode()][fragment.zone.getCode()][fragment.lair.getCode()][fragment.boss.getCode()][fragment.orientation] += item.m_StackSize;
 						}
 					}
+					if(isRegionalFragment(item))
+					{
+						var fragment = LairData.findRegionalFragmentByLocalizedName(isRegionalFragment(item));
+						if(fragment)
+						{
+							if(!this.m_regionalFragments.hasOwnProperty(fragment.region.getCode()))
+							{
+								this.m_regionalFragments[fragment.region.getCode()] = {};
+							}
+							if(!this.m_regionalFragments[fragment.region.getCode()].hasOwnProperty(fragment.boss.getCode()))
+							{
+								this.m_regionalFragments[fragment.region.getCode()][fragment.boss.getCode()] = {};
+								for(var oIdx=0; oIdx<RegionalBossFragmentSetOrientation.m_orientations.length; oIdx++)
+								{
+									var orientation = RegionalBossFragmentSetOrientation.m_orientations[oIdx];
+									this.m_regionalFragments[fragment.region.getCode()][fragment.boss.getCode()][orientation] = 0;
+								}
+							}
+							this.m_regionalFragments[fragment.region.getCode()][fragment.boss.getCode()][fragment.orientation] += item.m_StackSize;
+						}
+					}
 				}
 			}
 		}
@@ -105,7 +128,11 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 				distinctRegionCount: 0,
 				distinctZoneCount: 0,
 				distinctLairCount: 0,
-				distinctBossCount: 0
+				distinctBossCount: 0,
+				totalRegionalFragmentCount: 0,
+				distinctRegionalFragmentCount: 0,
+				distinctRegionalRegionsCount: 0,
+				distinctRegionalBossesCount: 0
 			};
 		
 			for(var region:String in this.m_lairFragments)
@@ -138,6 +165,27 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 				}
 			}
 			
+			for(var region:String in this.m_regionalFragments)
+			{
+				this.m_stats.distinctRegionalRegionsCount++;
+				
+				for(var boss:String in this.m_regionalFragments[region])
+				{
+					this.m_stats.distinctRegionalBossesCount++;
+						
+					var fragmentsObj = this.m_regionalFragments[region][boss];
+				
+					for(var oIdx=0; oIdx<RegionalBossFragmentSetOrientation.m_orientations.length; oIdx++)
+					{
+						var orientation = RegionalBossFragmentSetOrientation.m_orientations[oIdx];
+						var fragmentCount = this.m_regionalFragments[region][boss][orientation];
+					
+						if(fragmentCount > 0) this.m_stats.distinctRegionalFragmentCount++;
+						this.m_stats.totalRegionalFragmentCount += fragmentCount;
+					}
+				}
+			}
+			
 			this.m_stats_calculated = true;
 		}
 		
@@ -152,7 +200,7 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 		export.push("#TSWLMExport#");
 		
 		// Metadata
-		export.push("META{fmtv}1;");
+		export.push("META{fmtv}2;");
 		export.push("META{gen}omod;");
 		export.push("META{omodv}"+DistributedValue.GetDValue("tswlmexport_version", "")+";");
 		
@@ -208,6 +256,31 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 							}
 						}
 					}
+				}
+			}
+			
+			var boss = region.getRegionalBoss();
+			if(m_regionalFragments.hasOwnProperty(region.getCode()))
+			{
+				if(m_regionalFragments[region.getCode()].hasOwnProperty(boss.getCode()))
+				{
+					
+					var counts = "";
+					for(var oIdx=0; oIdx<RegionalBossFragmentSetOrientation.m_orientations.length; oIdx++)
+					{
+						var orientation = RegionalBossFragmentSetOrientation.m_orientations[oIdx];
+						var fragmentCount = m_regionalFragments[region.getCode()][boss.getCode()][orientation];
+						if(fragmentCount > 0)
+						{
+							counts += "" + fragmentCount;
+						}
+						if(oIdx < RegionalBossFragmentSetOrientation.m_orientations.length-1)
+						{
+							counts += ",";
+						}
+					}
+
+					export.push("SRFC{" + region.getCode() + ":" + boss.getCode() + "}" + counts + ";");
 				}
 			}
 		}
