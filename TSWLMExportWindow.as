@@ -29,6 +29,8 @@ class TSWLMExportWindow extends WindowComponentContent
 	private var m_bankInventory:Inventory;
 	private var m_inventoryScanner:InventoryScanner;
 	private var m_currentExportString:String;
+	private var m_isExportWindowOpen;
+	private var m_unscannedChanges:Boolean = true;
 
 	public var SignalClose:Signal;
 
@@ -49,7 +51,11 @@ class TSWLMExportWindow extends WindowComponentContent
 		this.m_inventoryScanner = new InventoryScanner();
 		this.m_inventoryScanner.SignalChanged.Connect(callbackDataChanged, this);
 		
+		this.m_isExportWindowOpen = com.GameInterface.DistributedValue.Create("tswlmexport_window");
+		this.m_isExportWindowOpen.SignalChanged.Connect(callbackWindowStateChanged, this);
+		
 		callbackBankAccessStateChanged();
+		callbackDataChanged();
 	}
 	
 	public function callbackBankAccessStateChanged()
@@ -75,11 +81,46 @@ class TSWLMExportWindow extends WindowComponentContent
 		}
 		
 		this.m_inventoryScanner.setInventories(inventories);
+		
+		this.doesNeedRescan();
 	}
 	
 	public function callbackDataChanged()
 	{
-		rescanInventories();
+		this.doesNeedRescan();
+	}
+	
+	public function isWindowOpen()
+	{
+		return com.GameInterface.DistributedValueBase.GetDValue("tswlmexport_window");
+	}
+	
+	public function callbackWindowStateChanged()
+	{
+		if(this.isWindowOpen())
+		{
+			if(this.needsRescan())
+			{
+				this.rescanInventories();
+			}
+		}
+	}
+	
+	public function doesNeedRescan()
+	{
+		if(this.isWindowOpen())
+		{
+			this.rescanInventories();
+		}
+		else
+		{
+			this.m_unscannedChanges = true;
+		}
+	}
+	
+	public function needsRescan()
+	{
+		return this.m_unscannedChanges;
 	}
 	
 	private function rescanInventories()
@@ -140,6 +181,8 @@ class TSWLMExportWindow extends WindowComponentContent
 		
 		this.m_currentExportString = this.m_inventoryScanner.exportString();
 		this.m_ExportStringField.text = this.m_currentExportString;
+		
+		this.m_unscannedChanges = false;
 	}
 	
 	public function SetSize(width:Number, height:Number)
