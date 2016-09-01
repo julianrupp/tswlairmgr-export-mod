@@ -44,6 +44,10 @@ Changelog
 
 #### Version 1.1
 
+##### 1.1.1
+
+-	Added tiny performance optimizations: Will not scan inventories while the export window is closed; scanning is now done upon opening the window if inventory changes have been made since it was last closed. This is intended to be an experimental fix for players experiencing performance problems after installing this mod.
+
 ##### 1.1.0
 -	Added support for exporting regional fragments. This will be used in a feature of the upcoming TSW Lair Manager v2.2.0. Please note that this update will break support with TSW Lair Manager v2.1.x and earlier versions. (TSW Lair Manager Export v1.0.x is the last version to support TSW Lair Manager v2.1.x and earlier)
 
