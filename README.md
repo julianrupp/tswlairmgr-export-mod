@@ -44,6 +44,10 @@ Changelog
 
 #### Version 1.1
 
+##### 1.1.2
+
+-	Fixed lair fragments with special characters like Ê, ê, é, ô in their localized names not being recognized by the inventory scanner.
+
 ##### 1.1.1
 
 -	Added tiny performance optimizations: Will not scan inventories while the export window is closed; scanning is now done upon opening the window if inventory changes have been made since it was last closed. This is intended to be an experimental fix for players experiencing performance problems after installing this mod.
