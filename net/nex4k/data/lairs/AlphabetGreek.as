@@ -88,13 +88,13 @@ class net.nex4k.data.lairs.AlphabetGreek extends net.nex4k.data.lairs.Alphabet
 		
 		m_localization["fr"] = {};
 		m_localization["fr"][ALPHA] = "Alpha";
-		m_localization["fr"][BETA] = "Bêta";
+		m_localization["fr"][BETA] = "B\u00eata";
 		m_localization["fr"][GAMMA] = "Gamma";
 		m_localization["fr"][DELTA] = "Delta";
 		m_localization["fr"][EPSILON] = "Epsilon";
-		m_localization["fr"][ZETA] = "Zêta";
-		m_localization["fr"][ETA] = "Êta";
-		m_localization["fr"][THETA] = "Thêta";
+		m_localization["fr"][ZETA] = "Z\u00eata";
+		m_localization["fr"][ETA] = "\u00cata";
+		m_localization["fr"][THETA] = "Th\u00eata";
 		m_localization["fr"][IOTA] = "Iota";
 		m_localization["fr"][KAPPA] = "Kappa";
 		m_localization["fr"][LAMBDA] = "Lambda";
@@ -103,14 +103,14 @@ class net.nex4k.data.lairs.AlphabetGreek extends net.nex4k.data.lairs.Alphabet
 		m_localization["fr"][XI] = "Xi";
 		m_localization["fr"][OMICRON] = "Omicron";
 		m_localization["fr"][PI] = "Pi";
-		m_localization["fr"][RHO] = "Rhô";
+		m_localization["fr"][RHO] = "Rh\u00f4";
 		m_localization["fr"][SIGMA] = "Sigma";
 		m_localization["fr"][TAU] = "Tau";
 		m_localization["fr"][UPSILON] = "Upsilon";
 		m_localization["fr"][PHI] = "Phi";
 		m_localization["fr"][CHI] = "Chi";
 		m_localization["fr"][PSI] = "Psi";
-		m_localization["fr"][OMEGA] = "Oméga";
+		m_localization["fr"][OMEGA] = "Om\u00e9ga";
 		
 		m_localization_initialized = true;
 	}
