@@ -48,6 +48,7 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 	{
 		this.m_scannerActive = true;
 		this.hook();
+		this.rescanInventories();
 	}
 	
 	public function deactivate()
