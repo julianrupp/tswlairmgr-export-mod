@@ -44,6 +44,10 @@ Changelog
 
 #### Version 1.1
 
+##### 1.1.4
+
+-	Fixed minor bug where inventory scanner wouldn't properly re-scan when data got stale.
+
 ##### 1.1.3
 
 -	More performance optimizations. Inventory scanner will now actually unsubscribe from inventory event messages while scanning for fragments is disabled.
