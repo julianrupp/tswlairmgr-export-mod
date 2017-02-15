@@ -44,6 +44,10 @@ Changelog
 
 #### Version 1.1
 
+##### 1.1.3
+
+-	More performance optimizations. Inventory scanner will now actually unsubscribe from inventory event messages while scanning for fragments is disabled.
+
 ##### 1.1.2
 
 -	Fixed lair fragments with special characters like Ê, ê, é, ô in their localized names not being recognized by the inventory scanner.

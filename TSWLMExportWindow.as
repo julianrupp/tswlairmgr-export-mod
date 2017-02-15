@@ -99,10 +99,15 @@ class TSWLMExportWindow extends WindowComponentContent
 	{
 		if(this.isWindowOpen())
 		{
+			this.m_inventoryScanner.activate();
 			if(this.needsRescan())
 			{
 				this.rescanInventories();
 			}
+		}
+		else
+		{
+			this.m_inventoryScanner.deactivate();
 		}
 	}
 	

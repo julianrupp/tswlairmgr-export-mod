@@ -11,6 +11,7 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 {
 	private var m_locale:String;
 	private var m_inventories:Array;
+	private var m_scannerActive:Boolean = false;
 	
 	private var m_stats:Object;
 	private var m_stats_calculated:Boolean = false;
@@ -23,12 +24,40 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 	{
 		this.m_locale = com.Utils.LDBFormat.GetCurrentLanguageCode();
 		this.SignalChanged = new Signal();
+		this.m_scannerActive = true;
 	}
 	
 	public function setInventories(inventories:Array)
 	{
 		this.m_inventories = inventories;
 		
+		if(this.m_scannerActive)
+		{
+			this.hook();
+		}
+		
+		callbackInventoryChanged();
+	}
+	
+	public function isActive()
+	{
+		return this.m_scannerActive;
+	}
+	
+	public function activate()
+	{
+		this.m_scannerActive = true;
+		this.hook();
+	}
+	
+	public function deactivate()
+	{
+		this.m_scannerActive = false;
+		this.unhook();
+	}
+	
+	private function hook()
+	{
 		for(var i=0; i<this.m_inventories.length; i++)
 		{
 			this.m_inventories[i].SignalItemLoaded.Connect(callbackInventoryChanged, this);
@@ -38,8 +67,19 @@ class net.nex4k.TSWLMExport.util.InventoryScanner
 			this.m_inventories[i].SignalItemChanged.Connect(callbackInventoryChanged, this);
 			this.m_inventories[i].SignalItemStatChanged.Connect(callbackInventoryChanged, this);
 		}
-		
-		callbackInventoryChanged();
+	}
+	
+	private function unhook()
+	{
+		for(var i=0; i<this.m_inventories.length; i++)
+		{
+			this.m_inventories[i].SignalItemLoaded.Disconnect(callbackInventoryChanged, this);
+			this.m_inventories[i].SignalItemAdded.Disconnect(callbackInventoryChanged, this);
+			this.m_inventories[i].SignalItemMoved.Disconnect(callbackInventoryChanged, this);
+			this.m_inventories[i].SignalItemRemoved.Disconnect(callbackInventoryChanged, this);
+			this.m_inventories[i].SignalItemChanged.Disconnect(callbackInventoryChanged, this);
+			this.m_inventories[i].SignalItemStatChanged.Disconnect(callbackInventoryChanged, this);
+		}
 	}
 	
 	public function callbackInventoryChanged()
